@@ -28,6 +28,23 @@ public class Proj4 {
         inputFileNameScanner.nextLine();
 
         // FINISH ME
+        ArrayList<Player> players = new ArrayList<>();
+
+        for (int i = 0; i < numLines; i++) {
+            if (!inputFileNameScanner.hasNextLine()) {
+                System.err.println("The entered numLines is greater than the number of lines in the file (" + i + " lines exist in the input file).");
+                System.exit(1);
+            }
+            String[] line = inputFileNameScanner.nextLine().split(",");
+            try {
+                players.add(new Player(line));
+            } catch (Exception e) {
+                System.out.println("Line Number " + (i + 1) + " has an invalid format.");
+            }
+        }
+        inputFileNameScanner.close();
+
+
 
     }
 }
