@@ -1,3 +1,10 @@
+/******************************************************************
+ * @file :                     SeparateChainingHashTable.java
+ * @description:               Implements a generic hash table using separate chaining with linked lists to handle collisions.
+ * @author:                    Elham Fayzi
+ * @date:                      Dec 3, 2025
+ ******************************************************************/
+
 import java.util.LinkedList;
 import java.util.List;
 

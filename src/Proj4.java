@@ -1,3 +1,13 @@
+/******************************************************************
+ * @file :                     Proj4.java
+ * @description:               reads a dataset of Player objects from a CSV file and stores them in an ArrayList. It uses a
+ *                             SeparateChainingHashTable to measure the runtime of insertion, search, and deletion operations
+ *                             for three types of input orderings: sorted, shuffled, and reverse-sorted. The class records these
+ *                             runtimes both to the console and to a file.
+ * @author:                    Elham Fayzi
+ * @date:                      Dec 3, 2025
+ ******************************************************************/
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -7,6 +17,7 @@ public class Proj4 {
     private static ArrayList<Player> players;
     private static SeparateChainingHashTable<Player> hashTable;
 
+    //Measures the runtime (in milliseconds) of a specific hash table operation (insert, search, or delete)
     public static double measureRuntime(String operation) {
         long startTime;
         long endTime;
@@ -42,6 +53,8 @@ public class Proj4 {
                 throw new IllegalArgumentException();
             }
         }
+
+        // Convert runtime from nanoseconds to milliseconds
         result = (endTime - startTime) / 1_000_000.0;
         return result;
     }
@@ -67,7 +80,7 @@ public class Proj4 {
         // ignore first line
         inputFileNameScanner.nextLine();
 
-        // FINISH ME
+        // Read player data from file up to numLines and populate the players ArrayList
         players = new ArrayList<>();
 
         for (int i = 0; i < numLines; i++) {
@@ -88,9 +101,8 @@ public class Proj4 {
         // Initialize runtime and hashTable
         // =============================
         hashTable = new SeparateChainingHashTable<>();
-        long startTime;
-        long endTime;
-        // Each array contains 3 doubles which are insertion, searching, and deletion operations times, respectively.
+
+        // Arrays to store runtimes for each type of input ordering. index 0: insertion, index 1: search, index 2: deletion
         double[] runtimeSorted = new double[3];
         double[] runtimeShuffled = new double[3];
         double[] runtimeReversed = new double[3];
@@ -125,16 +137,17 @@ public class Proj4 {
         //3) Deletion
         runtimeReversed[2] = measureRuntime("delete");
 
+
         // =============================
-
-
         // Append runtime analysis to analysis.txt
+        // =============================
         File file = new File("analysis.txt");
         boolean fileExists = file.exists();
 
         FileOutputStream fos = new FileOutputStream(file, true);
         PrintWriter writer = new PrintWriter(fos);
 
+        // Write header if file did not already exist
         if (!fileExists) {
             writer.println("NumLines" + "," + "SortedInsertion" + "," + "SortedSearch" + "," + "SortedDeletion" + "," + "ShuffledInsertion" + "," + "ShuffledSearch" + "," + "ShuffledDeletion" + "," + "ReversedInsertion" + "," + "ReversedSearch" + "," + "ReversedDeletion" );
         }
