@@ -1,3 +1,10 @@
+/******************************************************************
+ * @file :                     SeparateChainingHashTable.java
+ * @description:               Implements a generic hash table using separate chaining with linked lists to handle collisions.
+ * @author:                    Elham Fayzi
+ * @date:                      Dec 3, 2025
+ ******************************************************************/
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -38,7 +45,14 @@ public class SeparateChainingHashTable<AnyType> {
      * @param x the item to insert.
      */
     public void insert(AnyType x) {
-        // FINISH ME
+        List<AnyType> li = theLists[myhash(x)];
+        if (!li.contains(x)) {
+            li.addFirst(x);
+
+            if (++currentSize > theLists.length) {
+                rehash();
+            }
+        }
     }
 
     /**
@@ -47,7 +61,11 @@ public class SeparateChainingHashTable<AnyType> {
      * @param x the item to remove.
      */
     public void remove(AnyType x) {
-        // FINISH ME
+        List<AnyType> li = theLists[myhash(x)];
+        if (li.contains(x)) {
+            li.remove(x);
+            currentSize--;
+        }
     }
 
     /**
@@ -57,14 +75,17 @@ public class SeparateChainingHashTable<AnyType> {
      * @return true if x is not found.
      */
     public boolean contains(AnyType x) {
-        // FINISH ME
+        return theLists[myhash(x)].contains(x);
     }
 
     /**
      * Make the hash table logically empty.
      */
     public void makeEmpty() {
-        // FINISH ME
+        for (int i = 0; i < theLists.length; i++) {
+            theLists[i].clear();
+        }
+        currentSize = 0;
     }
 
     /**
@@ -88,7 +109,20 @@ public class SeparateChainingHashTable<AnyType> {
     }
 
     private void rehash() {
-        // FINISH ME
+        List<AnyType>[] oldList = theLists;
+
+        theLists = new LinkedList[nextPrime(2 * oldList.length)];
+
+        for (int i = 0; i < theLists.length; i++) {
+            theLists[i] = new LinkedList<>();
+        }
+
+        currentSize = 0;
+        for (List<AnyType> li : oldList) {
+            for (AnyType item : li) {
+                insert(item);
+            }
+        }
     }
 
     private int myhash(AnyType x) {

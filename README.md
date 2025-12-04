@@ -82,20 +82,28 @@ it to this repository.
 
 Insertion, search, and deletion running time (already sorted):
 
-![Firefly picture of a cat 86147](https://github.com/user-attachments/assets/8b2d008e-3011-4979-97b8-fa2e9886a01a)
-
+<img width="446" height="298" alt="Screenshot 2025-12-03 at 11 27 05 PM" src="https://github.com/user-attachments/assets/9ba8a2bc-881d-4a4f-a2c7-eef344d2998e" />
 
 Insertion, search, and deletion running time (shuffled):
 
+<img width="476" height="302" alt="Screenshot 2025-12-03 at 11 27 11 PM" src="https://github.com/user-attachments/assets/685295bc-a21f-4951-8bb6-ec099d33f125" />
+
 Insertion, search, and deletion running time (reversed):
+
+<img width="484" height="302" alt="Screenshot 2025-12-03 at 11 28 03 PM" src="https://github.com/user-attachments/assets/db2f1160-e458-46f7-b9a4-0336f6b2cc58" />
+
 
 ## 5. **Document your Dataset and Results**
 Document the source of your dataset and any modifications you made to it. Describe the results of your analysis and 
 how it compares to the theoretical performance of the hash table operations.
 
-Dataset Source: // FINISH ME
-Dataset Modifications ("None" if unchanged): // FINISH ME
-Result Analysis: // FINISH ME
+Dataset Source: https://www.kaggle.com/datasets/rishikeshkanabar/premier-league-player-statistics-updated-daily </br>
+Dataset Modifications ("None" if unchanged): None </br>
+Result Analysis: In a standard Separate-Chaining Hash Table with a good hash function and unifrom distribution, the exoected average running time each operation (insertion, search, and deletion) is O(1). The worst-case running time occurs when all elements hash to a single bucket, and in this case, search and deletion require traversing the entire bucket, giving O(n) complexity, while insertion stays O(1) if each bucket is implemented using a linked list and no restructuring is needed after each insertion.
+The results I obtained, shown in the attached graphs, also show a nearly constant time for insertion, search, and deletion across varying input sizes. The slight increase in running times noticed in the graphs are duee to looping over the original array to perform each operation on the hash table, which introduces a linear O(n) time complexity. In addition, some abrupt spikes, though unnoticeable, and gradual increase in insertion times can be explained by occasional rehashing of the table as the input size grows, which itself has a time complexity of O(N).
+
+## *Side Note:
+`run.sh` is a shell script I wrote to automate running the program for different data sizes. It can be executed using `bash run.sh`, should it be needed.
 
 ## Submission:
 
