@@ -1,0 +1,2 @@
+NumLines,SortedInsertion,SortedSearch,SortedDeletion,ShuffledInsertion,ShuffledSearch,ShuffledDeletion,ReversedInsertion,ReversedSearchReversedDeletion
+200,0.203209,0.061541,0.102875,0.085916,0.168833,0.095167,0.071084,0.024875,0.055708

@@ -104,7 +104,7 @@ public class SeparateChainingHashTable<AnyType> {
     private void rehash() {
         List<AnyType>[] oldList = theLists;
 
-        theLists = new List[nextPrime(2 * oldList.length)];
+        theLists = new LinkedList[nextPrime(2 * oldList.length)];
 
         for (int i = 0; i < theLists.length; i++) {
             theLists[i] = new LinkedList<>();
