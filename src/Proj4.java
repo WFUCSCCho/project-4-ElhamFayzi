@@ -136,7 +136,7 @@ public class Proj4 {
         PrintWriter writer = new PrintWriter(fos);
 
         if (!fileExists) {
-            writer.println("NumLines" + "," + "SortedInsertion" + "," + "SortedSearch" + "," + "SortedDeletion" + "," + "ShuffledInsertion" + "," + "ShuffledSearch" + "," + "ShuffledDeletion" + "," + "ReversedInsertion" + "," + "ReversedSearch" + "ReversedDeletion" );
+            writer.println("NumLines" + "," + "SortedInsertion" + "," + "SortedSearch" + "," + "SortedDeletion" + "," + "ShuffledInsertion" + "," + "ShuffledSearch" + "," + "ShuffledDeletion" + "," + "ReversedInsertion" + "," + "ReversedSearch" + "," + "ReversedDeletion" );
         }
         writer.print(numLines + "," + runtimeSorted[0] + "," + runtimeSorted[1] + "," + runtimeSorted[2] + "," + runtimeShuffled[0] + "," + runtimeShuffled[1] + "," + runtimeShuffled[2] + "," + runtimeReversed[0] + "," + runtimeReversed[1] + "," + runtimeReversed[2]);
         writer.println();
